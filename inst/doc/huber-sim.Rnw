@@ -1,0 +1,92 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass{scrartcl}
+\usepackage{Sweave}
+\begin{document}
+%% \VignetteIndexEntry{ResperByrow}
+%% \VignetteIndexEntry{ResperClot}
+\section{Some simulations}
+
+<<print=FALSE>>=
+library(resper)
+@
+
+First of all, lets check if the algorithm samples the permutations
+with similar frequencies. To that end, we build a tridiagonal matrix,
+which would correspond to a run of equidistant numbers and a lag that
+covers up to three numbers at once.
+
+<<print=TRUE>>=
+m <- toeplitz(c(rep(1,2), rep(0,5)))
+print(m)
+@ 
+
+A nice result is that the permanent of an $n-dimensional$ tridiagonal
+matrix is the $n+1$th Fibonacci number. The algorithm therefore should sample from 21 realizations of the permutation with probability $1/21$ each. Let's sample with the classical algorithm:
+
+
+<<>>=
+anziter <- 1000
+byrow.times <- NULL
+byrow.perms <- NULL
+byrow.rejects <- NULL
+
+for (i in 1:anziter) {
+  byrow.times <- rbind(byrow.times, system.time( p <- ResperByrow(m) ))
+  byrow.perms <- rbind(byrow.perms, p$perm)
+  byrow.rejects <- c(byrow.rejects, p$reject)
+}
+@ 
+
+Now let's look at the result. The permutations are first mapped to single elements that are distinguished between one another. As no number is greater than 9, one can simply convert the permutations into eight-digit numbers.
+
+<<print=TRUE>>=
+pn <- apply(t(byrow.perms)*10**(6:0), 2, sum)
+table(pn)
+@  
+
+The computation times that this has taken are logged by attempt. Obviously, the distribution of times is very skewed. 
+
+<<echo=TRUE, print=TRUE>>=
+summary(byrow.times)
+@ 
+
+This is caused by the roughly geometrical distribution of the number of rejections. 
+
+<<echo=TRUE, fig=TRUE>>=
+plot(table(byrow.rejects))
+@ 
+
+Let's see if the clotting algorithm performs better.
+
+<<>>=
+anziter <- 1000
+clot.times <- NULL
+clot.perms <- NULL
+clot.rejects <- NULL
+for (i in 1:anziter){
+  clot.times <- rbind(clot.times,   system.time( p <- ResperClot(m) ))
+  clot.perms <- rbind(clot.perms, p$perm)
+  clot.rejects <- c(clot.rejects, p$reject)
+}
+@ 
+
+The tabulation of the permutation samples:
+
+<<echo=TRUE, print=TRUE>>=
+pn <- apply(t(clot.perms)*10**(6:0), 2, sum)
+table(pn)
+@ 
+
+The summary of the computing time:
+
+<<echo=TRUE, print=TRUE>>=
+summary(clot.times)
+@ 
+
+And finally, the bar chart of the rejections:
+
+<<echo=TRUE, fig=TRUE>>=
+plot(table(clot.rejects))
+@ 
+
+\end{document}
