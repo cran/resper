@@ -2,27 +2,23 @@
 <leo_file>
 <leo_header file_format="2" tnodes="0" max_tnode_index="12" clone_windows="0"/>
 <globals body_outline_ratio="0.465665236052">
-	<global_window_position top="155" left="65" height="585" width="932"/>
+	<global_window_position top="65" left="25" height="585" width="932"/>
 	<global_log_window_position top="0" left="0" height="0" width="0"/>
 </globals>
-<preferences>
-</preferences>
-<find_panel_settings>
-	<find_string></find_string>
-	<change_string></change_string>
-</find_panel_settings>
+<preferences/>
+<find_panel_settings/>
 <vnodes>
 <v t="hannes.20050214061735" a="E"><vh>Sampling from restricted permutations</vh>
 <v t="hannes.20050217075724" a="E" tnodeList="hannes.20050217075724,hannes.20050217081922,hannes.20050217081922.1,hannes.20050217081922.2,hannes.20050217082529,hannes.20050217081922.3,hannes.20050217081922.4,hannes.20050217081922.5,hannes.20050217081922.6,hannes.20050512202734"><vh>@nosent ../../DESCRIPTION</vh>
 <v t="hannes.20050217081922"><vh>&lt;&lt; Package &gt;&gt;</vh></v>
 <v t="hannes.20050217081922.1"><vh>&lt;&lt; Title &gt;&gt;</vh></v>
-<v t="hannes.20050217081922.2"><vh>&lt;&lt; Version &gt;&gt;</vh></v>
+<v t="hannes.20050217081922.2" a="TV"><vh>&lt;&lt; Version &gt;&gt;</vh></v>
 <v t="hannes.20050217082529"><vh>&lt;&lt; Date &gt;&gt;</vh></v>
 <v t="hannes.20050217081922.3"><vh>&lt;&lt; Author &gt;&gt;</vh></v>
 <v t="hannes.20050217081922.4"><vh>&lt;&lt; Description &gt;&gt;</vh></v>
 <v t="hannes.20050217081922.5"><vh>&lt;&lt; Maintainer &gt;&gt;</vh></v>
 <v t="hannes.20050217081922.6"><vh>&lt;&lt; License &gt;&gt;</vh></v>
-<v t="hannes.20050512202734" a="TV"><vh>&lt;&lt; Encoding &gt;&gt;</vh></v>
+<v t="hannes.20050512202734"><vh>&lt;&lt; Encoding &gt;&gt;</vh></v>
 </v>
 <v t="hannes.20050214061735.1" a="E" tnodeList="hannes.20050214061735.1,hannes.20050214061735.2,hannes.20050214061735.3,hannes.20050214061735.4,hannes.20050214061735.5,hannes.20050214062217,hannes.20050214062217.1,hannes.20050214062217.2,hannes.20050217062348"><vh>@nosent ../../R/helper.R</vh>
 <v t="hannes.20050214061735.2" a="E"><vh>The recursive function</vh>
@@ -126,7 +122,7 @@
 </v>
 </v>
 </v>
-<v t="hannes.20050329072710"><vh>tests</vh>
+<v t="hannes.20050329072710" a="E"><vh>tests</vh>
 <v t="hannes.20050214061735.4"><vh>A non-recursive version</vh></v>
 <v t="hannes.20050329072710.1"><vh>Test for Huber function</vh></v>
 <v t="hannes.20050214062217.2"><vh>Vector of selection weights</vh></v>
@@ -649,7 +645,7 @@ Encoding: &lt;&lt;Encoding&gt;&gt; </t>
 </t>
 <t tx="hannes.20050217081922.1">Sampling from restricted permutations
 </t>
-<t tx="hannes.20050217081922.2">0.3
+<t tx="hannes.20050217081922.2">0.3.2
 </t>
 <t tx="hannes.20050217081922.3">Johannes Hüsing
 </t>
@@ -954,13 +950,11 @@ plot(table(clot.rejects))
 \end{document}
 </t>
 <t tx="hannes.20050329072710"></t>
-<t tx="hannes.20050329072710.1">HuberGNonRecursive(5)
-HuberGNonRecursive(280)
+<t tx="hannes.20050329072710.1">resper:::HuberGNonRecursive(5)
+resper:::HuberGNonRecursive(280)
 </t>
 <t tx="hannes.20050329073523">getwd()
-source('../../resper/R/helper.R')
-source('../../resper/R/byrow-sample.R')
-source('../../resper/R/clot-sample.R')
+library(resper)
 
 set.seed(seed=1, kind="default")
 
@@ -970,10 +964,10 @@ mgross &lt;- toeplitz(c(rep(1,4), rep(0,36)))
 mzufall &lt;- WithinDeltaMat(cumsum(runif(20)), 2)
 
 @others</t>
-<t tx="hannes.20050329074025">HuberProbs(mklein, 1)
-HuberProbs(mklein, 4)
-HuberProbs(mgross, 1)
-HuberProbs(mgross, 14)
+<t tx="hannes.20050329074025">resper:::HuberProbs(mklein, 1)
+resper:::HuberProbs(mklein, 4)
+resper:::HuberProbs(mgross, 1)
+resper:::HuberProbs(mgross, 14)
 </t>
 <t tx="hannes.20050512202734">utf-8</t>
 </tnodes>

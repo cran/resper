@@ -1,7 +1,5 @@
 getwd()
-source('../../resper/R/helper.R')
-source('../../resper/R/byrow-sample.R')
-source('../../resper/R/clot-sample.R')
+library(resper)
 
 set.seed(seed=1, kind="default")
 
@@ -10,9 +8,9 @@ mgross <- toeplitz(c(rep(1,4), rep(0,36)))
 
 mzufall <- WithinDeltaMat(cumsum(runif(20)), 2)
 
-HuberGNonRecursive(5)
-HuberGNonRecursive(280)
-HuberProbs(mklein, 1)
-HuberProbs(mklein, 4)
-HuberProbs(mgross, 1)
-HuberProbs(mgross, 14)
+resper:::HuberGNonRecursive(5)
+resper:::HuberGNonRecursive(280)
+resper:::HuberProbs(mklein, 1)
+resper:::HuberProbs(mklein, 4)
+resper:::HuberProbs(mgross, 1)
+resper:::HuberProbs(mgross, 14)
